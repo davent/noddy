@@ -12,7 +12,7 @@ module Noddy
       level = @level || DEFAULT_LEVEL
     end
 
-    def debug( msg )
+    def self.debug( msg )
       log_message( msg, DEBUG )
     end
 

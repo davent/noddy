@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Noddy Logger logging library.}
   spec.description   = %q{Handles logging to stdout, stderr and file as well as log levels, timestamping and compression.}
   spec.homepage      = "https://github.com/davent/noddy"
-  spec.license       = "GPLv2"
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

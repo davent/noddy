@@ -1,6 +1,13 @@
 # Noddy
 
-TODO: Write a gem description
+Noddy Logger is a very simple library to uickly out puts from your scripts and applications.
+
+This is very much a work in progress, but is still usable.
+
+TODO:
+
+ - Specify log output e.g. STDERR, STDOUT, File
+ - Sepcifiy log format
 
 ## Installation
 
@@ -21,9 +28,9 @@ Or install it yourself as:
 ```ruby
 require "noddy"
 
-Noddy.log_level = Noddy::DEBUG
-Noddy.colour = true
-Noddy.timestamp = true
+Noddy.log_level = Noddy::DEBUG # Default: Noddy::INFO
+Noddy.colour = true # Default: false
+Noddy.timestamp = false # Default: true
 
 Noddy.debug "I am just a debug message"
 Noddy.info "I am an info message"

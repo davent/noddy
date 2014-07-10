@@ -1,6 +1,6 @@
 # Noddy
 
-Noddy Logger is a very simple library to uickly out puts from your scripts and applications.
+Noddy Logger is a very simple library to quickly outputs from your scripts and applications.
 
 This is very much a work in progress, but is still usable.
 

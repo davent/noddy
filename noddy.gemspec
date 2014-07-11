@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Dave Avent"]
   spec.email         = ["davent@lumux.co.uk"]
   spec.summary       = %q{Noddy Logger logging library.}
-  spec.description   = %q{Handles logging to stdout, stderr and file as well as log levels, timestamping and compression.}
+  spec.description   = %q{Noddy Logger is a very simple library to quickly output logs from your scripts and applications using colours, timestamps etc.}
   spec.homepage      = "https://github.com/davent/noddy"
   spec.license       = "MIT"
 

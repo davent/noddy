@@ -8,11 +8,7 @@ module Noddy
       @level = level
     end
 
-    def log_message( msg )
-      level = @level || DEFAULT_LEVEL
-    end
-
-    def self.debug( msg )
+    def debug( msg )
       log_message( msg, DEBUG )
     end
 
@@ -48,7 +44,7 @@ module Noddy
 
       msg.timestamp! if @timestamp || TIMESTAMP_DEFAULT
 
-      puts msg if level <= @level
+      puts msg if level <= (@level || DEFAULT_LEVEL )
     end
   end
 end

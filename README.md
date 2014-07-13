@@ -6,8 +6,7 @@ This is very much a work in progress, but is still usable.
 
 TODO:
 
- - Specify log output e.g. STDERR, STDOUT, File
- - Sepcifiy log format
+ - Sepcifiy log format (text, json etc)
 
 ## Installation
 
@@ -31,6 +30,8 @@ require "noddy"
 Noddy.log_level = Noddy::DEBUG # Default: Noddy::INFO
 Noddy.colour = true # Default: false
 Noddy.timestamp = false # Default: true
+Noddy.outputs = [STDOUT, Noddy::FILE] # Default [STDERR]
+Noddy.outputs = [STDOUT, '/var/log/dca/test.log'] # Using a custom log path
 
 Noddy.debug "I am just a debug message"
 Noddy.info "I am an info message"

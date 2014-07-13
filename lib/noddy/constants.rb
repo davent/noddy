@@ -12,4 +12,8 @@ module Noddy
 
   TIMESTAMP_DEFAULT = true
 
+  OUTPUTS_DEFAULT = [STDERR]
+
+  FILE = '/var/log/' + File.basename($0).gsub(/\.\w+$/, '') + '.log'
+
 end

@@ -4,10 +4,6 @@ require "noddy/string"
 
 module Noddy
   class << self
-    def log_level=( level )
-      @level = level
-    end
-
     def debug( msg )
       log_message( msg, DEBUG )
     end
@@ -29,6 +25,10 @@ module Noddy
     end
 
 
+    def log_level=( level )
+      @level = level
+    end
+
     def colour=( colour )
       @colour = colour
     end
@@ -37,14 +37,52 @@ module Noddy
       @timestamp = timestamp
     end
 
+    def outputs=( outputs = [] )
+      @outputs = outputs
+    end
+
     private
     def log_message( msg, level )
-
-      msg.colour!( level ) if @colour || COLOUR_DEFAULT
+      outputs = @outputs || OUTPUTS_DEFAULT
 
       msg.timestamp! if @timestamp || TIMESTAMP_DEFAULT
 
-      puts msg if level <= (@level || DEFAULT_LEVEL )
+      outputs.each do |output|
+        case output
+        when STDOUT
+          if @colour || COLOUR_DEFAULT
+            STDOUT.puts msg.colour( level ) if level <= (@level || DEFAULT_LEVEL )
+          else
+            STDOUT.puts msg if level <= (@level || DEFAULT_LEVEL )
+          end
+        when STDERR
+          if @colour || COLOUR_DEFAULT
+            STDERR.puts msg.colour( level ) if level <= (@level || DEFAULT_LEVEL )
+          else
+            STDERR.puts msg if level <= (@level || DEFAULT_LEVEL )
+          end
+        when String
+          write_log_file( output, msg, level )
+        else
+          raise "Unknow output type of class #{output.class}"
+        end
+      end
     end
+
+    def write_log_file( output, msg, level )
+      log_dir = File.dirname output
+      raise "Log file directory #{log_dir} does not exist" unless Dir.exist? log_dir
+
+      begin
+        File.open(output, 'a', 0644) do |f|
+          f.flock(File::LOCK_EX)
+          f.write msg + "\n"
+          f.flush
+        end
+      rescue Errno::EACCES => e
+        raise "Permissioned denided writing to #{output}"
+      end
+    end
+
   end
 end
